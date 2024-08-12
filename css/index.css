@@ -1,0 +1,7 @@
+@import "header.css";
+@import "main.css";
+@import "footer.css";
+
+body {
+  font-family: Georgia, Times, Times New Roman, serif;
+}
