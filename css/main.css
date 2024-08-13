@@ -5,6 +5,8 @@ main {
   flex-direction: column;
   gap: 5px;
   margin-top: 50px;
+  font-size: larger;
+  font-weight: bolder;
 }
 
 .board-row {
