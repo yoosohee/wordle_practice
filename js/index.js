@@ -20,7 +20,7 @@ function appStart() {
   };
 
   const nextLine = () => {
-    if (attempts === 6) return gameover();
+    if (attempts === 5) return gameover();
     attempts += 1;
     index = 0;
   };
@@ -36,9 +36,42 @@ function appStart() {
       if (입력한_글자 === 정답_글자) {
         맞은_갯수 += 1;
         block.style.background = "#6AAA64";
-      } else if (정답.includes(입력한_글자)) block.style.background = "#C9B458";
-      else block.style.background = "#787C7E";
-      block.style.color = "white";
+        const keyboard = document.querySelector(
+          `.keyboard-block[data-key='${정답_글자}']`
+        );
+        keyboard.style.background = "#6AAA64";
+      } else if (정답.includes(입력한_글자)) {
+        block.style.background = "#C9B458";
+        const keyboard = document.querySelector(
+          `.keyboard-block[data-key='${입력한_글자}']`
+        );
+        keyboard.style.background = "#C9B458";
+      } else {
+        block.style.background = "#787C7E";
+        const keyboard = document.querySelector(
+          `.keyboard-block[data-key='${입력한_글자}']`
+        );
+        keyboard.style.background = "#787C7E";
+        const boom = [
+          { translate: "20px" },
+          { translate: "-10px" },
+          { translate: "10px" },
+          { translate: "-10px" },
+          { translate: "10px" },
+          { translate: "-10px" },
+          { translate: "10px" },
+          { translate: "-10px" },
+        ];
+        const box_Timing = {
+          duration: 900,
+          iterations: 1,
+        };
+        const move_box = document.querySelector(
+          `.board-block[data-index='${attempts}${i}']`
+        );
+        move_box.animate(boom, box_Timing);
+        block.style.color = "white";
+      }
     }
 
     if (맞은_갯수 === 5) gameover();
